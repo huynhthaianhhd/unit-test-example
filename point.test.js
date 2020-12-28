@@ -50,7 +50,7 @@ describe("Khởi tạo Point, input hợp lệ", () => {
   });
 
   test("x: số thập phân âm, y: số thập phân dương", () => {
-    const point = new Point(-2.12, 1.42);
+    const point = new Point(-5.5, 5.5);
     expect(point instanceof Point).toBe(true);
   });
 
