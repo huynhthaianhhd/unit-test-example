@@ -1,12 +1,12 @@
 module.exports = class Point {
   constructor(x, y) {
-    if (isNaN(x) || isNaN(y)) throw Error("Input không hợp lệ");
     this.x = x;
     this.y = y;
   }
   calDistance(b) {
     const dx = b.x - this.x;
     const dy = b.y - this.y;
-    return Math.hypot(dx, dy);
+    const distance = Math.hypot(dx, dy);
+    return Math.round(parseFloat(distance) * 1000000000) / 1000000000;
   }
 };

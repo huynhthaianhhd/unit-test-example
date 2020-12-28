@@ -1,5 +1,3 @@
-const Point = require("./Point");
-
 module.exports = class Triangle {
   constructor(pointA, pointB, pointC) {
     this.pointA = pointA;
@@ -11,13 +9,11 @@ module.exports = class Triangle {
     const a = this.pointA.calDistance(this.pointB);
     const b = this.pointB.calDistance(this.pointC);
     const c = this.pointC.calDistance(this.pointA);
-    console.log(a, b, c);
-    if (a < 0 || b < 0 || c < 0) return false;
-    if (a > b + c && b > a + c && c > a + b) return false;
+    if (a >= b + c || b >= a + c || c >= a + b) return false;
     if (
-      a == Math.hypot(b, c) ||
-      b == Math.hypot(a, c) ||
-      c == Math.hypot(a, b)
+      a == Math.round(parseFloat(Math.hypot(b, c)) * 1000000000) / 1000000000 ||
+      b == Math.round(parseFloat(Math.hypot(a, c)) * 1000000000) / 1000000000 ||
+      c == Math.round(parseFloat(Math.hypot(a, b)) * 1000000000) / 1000000000
     ) {
       str = str.concat(" vuông");
       if (a == b || a == c || b == c) {
@@ -32,7 +28,7 @@ module.exports = class Triangle {
       c * c > a * a + b * b
     )
       return str.concat(" tù");
-    else str.concat(" nhọn");
+    else return str.concat(" nhọn");
   }
   perimeter() {
     const isTriangle = this.classifyTriangle();
@@ -40,7 +36,7 @@ module.exports = class Triangle {
       const a = this.pointA.calDistance(this.pointB);
       const b = this.pointB.calDistance(this.pointC);
       const c = this.pointC.calDistance(this.pointA);
-      return a + b + c;
+      return Math.round(parseFloat(a + b + c) * 1000000000) / 1000000000;
     } else {
       return -1;
     }
